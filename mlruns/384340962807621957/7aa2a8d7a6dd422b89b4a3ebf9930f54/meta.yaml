@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/384340962807621957/7aa2a8d7a6dd422b89b4a3ebf9930f54/artifacts
+end_time: 1733584910140
+entry_point_name: ''
+experiment_id: '384340962807621957'
+lifecycle_stage: active
+run_id: 7aa2a8d7a6dd422b89b4a3ebf9930f54
+run_name: thundering-fawn-311
+run_uuid: 7aa2a8d7a6dd422b89b4a3ebf9930f54
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733584906254
+status: 3
+tags: []
+user_id: Haru

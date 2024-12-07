@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/384340962807621957/da91dccb38034ddd994955cee2354b0b/artifacts
+end_time: 1733584798315
+entry_point_name: ''
+experiment_id: '384340962807621957'
+lifecycle_stage: active
+run_id: da91dccb38034ddd994955cee2354b0b
+run_name: intelligent-carp-426
+run_uuid: da91dccb38034ddd994955cee2354b0b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733584794445
+status: 3
+tags: []
+user_id: Haru

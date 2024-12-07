@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/384340962807621957/ea30ddc675744f60b593d6a21289c193/artifacts
+end_time: 1733584398719
+entry_point_name: ''
+experiment_id: '384340962807621957'
+lifecycle_stage: active
+run_id: ea30ddc675744f60b593d6a21289c193
+run_name: caring-horse-629
+run_uuid: ea30ddc675744f60b593d6a21289c193
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733584394904
+status: 3
+tags: []
+user_id: Haru

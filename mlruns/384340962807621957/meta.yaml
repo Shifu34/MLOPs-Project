@@ -1,0 +1,6 @@
+artifact_location: mlflow-artifacts:/384340962807621957
+creation_time: 1733583866028
+experiment_id: '384340962807621957'
+last_update_time: 1733583866028
+lifecycle_stage: active
+name: Temperature Prediction Experiment

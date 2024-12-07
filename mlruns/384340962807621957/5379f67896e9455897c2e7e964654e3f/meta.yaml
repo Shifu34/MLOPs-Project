@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/384340962807621957/5379f67896e9455897c2e7e964654e3f/artifacts
+end_time: 1733584658311
+entry_point_name: ''
+experiment_id: '384340962807621957'
+lifecycle_stage: active
+run_id: 5379f67896e9455897c2e7e964654e3f
+run_name: rambunctious-cub-577
+run_uuid: 5379f67896e9455897c2e7e964654e3f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733584658236
+status: 3
+tags: []
+user_id: Haru

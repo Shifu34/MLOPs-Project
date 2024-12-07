@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/384340962807621957/6887e6075b514bc793fc2ef7b79cd51f/artifacts
+end_time: 1733584910240
+entry_point_name: ''
+experiment_id: '384340962807621957'
+lifecycle_stage: active
+run_id: 6887e6075b514bc793fc2ef7b79cd51f
+run_name: gifted-yak-342
+run_uuid: 6887e6075b514bc793fc2ef7b79cd51f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733584910177
+status: 3
+tags: []
+user_id: Haru

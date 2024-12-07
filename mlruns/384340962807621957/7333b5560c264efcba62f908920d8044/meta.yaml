@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/384340962807621957/7333b5560c264efcba62f908920d8044/artifacts
+end_time: 1733584658198
+entry_point_name: ''
+experiment_id: '384340962807621957'
+lifecycle_stage: active
+run_id: 7333b5560c264efcba62f908920d8044
+run_name: welcoming-frog-774
+run_uuid: 7333b5560c264efcba62f908920d8044
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733584654673
+status: 3
+tags: []
+user_id: Haru

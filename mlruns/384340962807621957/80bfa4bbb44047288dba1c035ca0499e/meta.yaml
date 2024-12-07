@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/384340962807621957/80bfa4bbb44047288dba1c035ca0499e/artifacts
+end_time: 1733584008858
+entry_point_name: ''
+experiment_id: '384340962807621957'
+lifecycle_stage: active
+run_id: 80bfa4bbb44047288dba1c035ca0499e
+run_name: languid-wasp-968
+run_uuid: 80bfa4bbb44047288dba1c035ca0499e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733584008813
+status: 4
+tags: []
+user_id: Haru

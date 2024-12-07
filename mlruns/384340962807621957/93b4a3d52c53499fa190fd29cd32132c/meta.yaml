@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/384340962807621957/93b4a3d52c53499fa190fd29cd32132c/artifacts
+end_time: 1733584131140
+entry_point_name: ''
+experiment_id: '384340962807621957'
+lifecycle_stage: active
+run_id: 93b4a3d52c53499fa190fd29cd32132c
+run_name: melodic-penguin-274
+run_uuid: 93b4a3d52c53499fa190fd29cd32132c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733584123843
+status: 3
+tags: []
+user_id: Haru

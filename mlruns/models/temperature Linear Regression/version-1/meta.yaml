@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1733585557131
+current_stage: None
+description: ''
+last_updated_timestamp: 1733585557131
+name: temperature Linear Regression
+run_id: 057865c7358146b790bb18ffba1d1839
+run_link: ''
+source: mlflow-artifacts:/647844585667991767/057865c7358146b790bb18ffba1d1839/artifacts/linear-regression-model
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/647844585667991767/057865c7358146b790bb18ffba1d1839/artifacts/linear-regression-model
+user_id: null
+version: 1

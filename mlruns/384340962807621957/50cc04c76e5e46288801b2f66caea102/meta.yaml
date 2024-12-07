@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/384340962807621957/50cc04c76e5e46288801b2f66caea102/artifacts
+end_time: 1733584882109
+entry_point_name: ''
+experiment_id: '384340962807621957'
+lifecycle_stage: active
+run_id: 50cc04c76e5e46288801b2f66caea102
+run_name: mysterious-colt-233
+run_uuid: 50cc04c76e5e46288801b2f66caea102
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733584882044
+status: 3
+tags: []
+user_id: Haru
