@@ -1,61 +1,103 @@
-from flask import Flask, request, jsonify
-from flask_pymongo import PyMongo
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required
-from datetime import timedelta
-import bcrypt
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session, flash
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+import pickle
+import numpy as np
+import secrets
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder='../frontend/templates',  # Adjusted path
+    static_folder='../frontend/static'        # Adjusted path
+)
 
-# MongoDB configuration
-app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"  # Adjust the URI according to your MongoDB setup
-app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
+app.config['SECRET_KEY'] = secrets.token_hex(16)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-mongo = PyMongo(app)
-jwt = JWTManager(app)
-db = mongo.db
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
-# User collection
-users = db.users
+# Load ML model
+with open('model.pkl', 'rb') as file:
+    model = pickle.load(file)
 
-# User Registration
-@app.route('/register', methods=['POST'])
-def register():
-    data = request.get_json()
-    username = data['username']
-    password = data['password'].encode('utf-8')
-    hashed = bcrypt.hashpw(password, bcrypt.gensalt())  # Hashing the password before storing
+# User model
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.String(150), nullable=False)
 
-    # Check if username exists
-    if users.find_one({"username": username}):
-        return jsonify({'message': 'Username already exists'}), 409
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
-    users.insert_one({
-        "username": username,
-        "password": hashed
-    })
-    return jsonify({'message': 'User created successfully.'}), 201
+# Routes
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-# User Login
-@app.route('/login', methods=['POST'])
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
+        user = User(username=username, password=password)
+        db.session.add(user)
+        db.session.commit()
+        flash('Account created successfully!', 'success')
+        return redirect(url_for('login'))
+    return render_template('signup.html')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    data = request.get_json()
-    user = users.find_one({"username": data['username']})
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        if user and bcrypt.check_password_hash(user.password, password):
+            login_user(user)
+            return redirect(url_for('predict'))
+        flash('Login failed. Check username or password.', 'danger')
+    return render_template('login.html')
 
-    if user and bcrypt.checkpw(data['password'].encode('utf-8'), user['password']):
-        token = create_access_token(identity=user['username'])
-        return jsonify({'token': token}), 200
-    else:
-        return jsonify({'message': 'Invalid credentials'}), 401
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
-# Prediction endpoint
-@app.route('/predict', methods=['POST'])
-@jwt_required()
+@app.route('/predict', methods=['GET', 'POST'])
+@login_required
 def predict():
-    data = request.get_json()
-    # Dummy logic for prediction
-    result = {'temperature': data['temperature'] * 1.8 + 32}  # Convert C to F for demonstration
-    return jsonify(result)
+    return render_template('predict.html', temprature=None)
+
+@app.route('/process', methods=['POST'])
+def process_input():
+    """Handle form input and make predictions."""
+    try:
+        # Get wind speed and humidity from the form
+        wind_speed = float(request.form['wind'])
+        humidity = float(request.form['humidity'])
+
+        # Prepare data for prediction
+        input_data = np.array([[humidity, wind_speed]])
+
+        # Predict temperature using the loaded model
+        prediction = model.predict(input_data)[0]
+
+        prediction = abs(prediction)
+
+        # Render the result on the front-end
+        return render_template('predict.html', temprature=round(prediction, 2))
+    except Exception as e:
+        # Handle exceptions and display the error message
+        return render_template('predict.html', temprature=f"Error: {str(e)}")
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()  # Create tables within the application context
     app.run(debug=True)

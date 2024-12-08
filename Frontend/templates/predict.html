@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Forecasting</h1>
+        <form action="/process" method="POST">
+            <label for="wind">Wind Speed (km/h):</label>
+            <input type="text" id="wind" name="wind" required>
+
+            <label for="humidity">Humidity (%):</label>
+            <input type="text" id="humidity" name="humidity" required>
+            <br>
+            <button type="submit">Predict Temperature</button>
+        </form>
+
+        {% if temprature is not none %}
+        <div class="result-box">
+            <h3>Prediction Result</h3>
+            <p>Temperature: <strong>{{ temprature }}</strong> °C</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
