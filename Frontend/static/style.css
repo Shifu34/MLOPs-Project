@@ -1,8 +1,7 @@
-
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: url('/static/bg.png') no-repeat center center fixed;
+    background: url('/static/nature.jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
 }
@@ -11,9 +10,12 @@ body {
     margin: 50px auto;
     padding: 20px;
     text-align: center;
+    background: rgba(0, 0, 0, 0.5); /* Slightly dark background to improve readability */
+    border-radius: 10px;
 }
 h1 {
     margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for better contrast */
 }
 label {
     font-size: 18px;
@@ -31,6 +33,12 @@ input[type="password"] {
     border: none;
     outline: none;
     font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #cccccc;
 }
 button {
     width: 200px;
@@ -50,7 +58,8 @@ button:hover {
 .result-box {
     margin-top: 50px;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2); /* Transparent effect */
     border-radius: 10px;
     text-align: center;
+    color: white;
 }
