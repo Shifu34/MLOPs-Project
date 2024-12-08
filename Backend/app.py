@@ -9,8 +9,8 @@ from mlflow.models import infer_signature
 import mlflow
 app = Flask(
     __name__,
-    template_folder='../frontend/templates',  # Adjusted path
-    static_folder='../frontend/static'        # Adjusted path
+    template_folder='/app/templates',  # Adjusted to the container path
+    static_folder='/app/static'        # Adjusted to the container path
 )
 
 app.config['SECRET_KEY'] = secrets.token_hex(16)
@@ -23,13 +23,13 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 # Setup MLflow connection and experiment
-mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_tracking_uri("http://host.docker.internal:5000")
 mlflow.set_experiment("Linear Regression Experiment")
 logged_model = 'mlflow-artifacts:/647844585667991767/057865c7358146b790bb18ffba1d1839/artifacts/linear-regression-model'
 
 
 # Load the model
-loaded_model = mlflow.sklearn.load_model(logged_model)
+model = mlflow.sklearn.load_model(logged_model)
 
 # User model
 class User(UserMixin, db.Model):
@@ -106,4 +106,4 @@ def process_input():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Create tables within the application context
-    app.run(port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
