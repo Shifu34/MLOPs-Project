@@ -7,12 +7,13 @@
 <body>
     <div class="container">
         <h1>Temperature Forecasting</h1>
+        <p>Provide the weather details below to predict the temperature.</p>
         <form action="/process" method="POST">
             <label for="wind">Wind Speed (km/h):</label>
-            <input type="text" id="wind" name="wind" required>
+            <input type="text" id="wind" name="wind" placeholder="Enter wind speed" required>
 
             <label for="humidity">Humidity (%):</label>
-            <input type="text" id="humidity" name="humidity" required>
+            <input type="text" id="humidity" name="humidity" placeholder="Enter humidity percentage" required>
             <br>
             <button type="submit">Predict Temperature</button>
         </form>
@@ -26,3 +27,7 @@
     </div>
 </body>
 </html>
+
+
+
+

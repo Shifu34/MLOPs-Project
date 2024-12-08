@@ -8,14 +8,18 @@ body {
 .container {
     max-width: 800px;
     margin: 50px auto;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.5); /* Slightly dark background to improve readability */
-    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
 }
 h1 {
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for better contrast */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+p {
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 label {
     font-size: 18px;
@@ -26,8 +30,9 @@ label {
 }
 input[type="text"],
 input[type="password"] {
-    width: 300px;
-    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
     margin: 10px 0;
     border-radius: 8px;
     border: none;
@@ -42,7 +47,7 @@ input[type="password"]::placeholder {
 }
 button {
     width: 200px;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 8px;
     background: #6d241d;
@@ -51,15 +56,17 @@ button {
     font-weight: bold;
     margin-top: 20px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 button:hover {
     background: #e05650;
+    transform: scale(1.05);
 }
 .result-box {
-    margin-top: 50px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.2); /* Transparent effect */
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    text-align: center;
-    color: white;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
