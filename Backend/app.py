@@ -5,7 +5,8 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import pickle
 import numpy as np
 import secrets
-
+from mlflow.models import infer_signature
+import mlflow
 app = Flask(
     __name__,
     template_folder='../frontend/templates',  # Adjusted path
@@ -21,9 +22,14 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
-# Load ML model
-with open('model.pkl', 'rb') as file:
-    model = pickle.load(file)
+# Setup MLflow connection and experiment
+mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_experiment("Linear Regression Experiment")
+logged_model = 'mlflow-artifacts:/647844585667991767/057865c7358146b790bb18ffba1d1839/artifacts/linear-regression-model'
+
+
+# Load the model
+loaded_model = mlflow.sklearn.load_model(logged_model)
 
 # User model
 class User(UserMixin, db.Model):
@@ -100,4 +106,4 @@ def process_input():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Create tables within the application context
-    app.run(debug=True)
+    app.run(port=8080, debug=True)
